@@ -1,0 +1,2 @@
+# Sentiment ReadAbility Analysis of News Website
+An AI-based website that allows users to upload or enter news text for automatic analysis. The system will process the text with NLP to determine the sentiment of the news, whether it is positive, negative, or neutral, while also calculating the readability level to determine how easy the news is to understand for the target audience. The analysis results are displayed concisely to help journalists, editors, and readers evaluate the quality of the news.

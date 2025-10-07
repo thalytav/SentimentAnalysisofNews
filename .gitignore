@@ -1,0 +1,11 @@
+# Node
+frontend/node_modules
+frontend/dist
+
+# Python
+ai/venv
+ai/__pycache__/
+
+# PHP / Laravel
+backend/vendor
+backend/storage
