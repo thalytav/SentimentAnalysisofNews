@@ -69,6 +69,16 @@ const handlePaste = async (e: ClipboardEvent) => {
 const processFile = async (file: File) => {
   if (isProcessing.value) return
 
+  // Validasi tipe file
+  const allowedExtensions = ['.txt']
+  const fileName = file.name.toLowerCase()
+  const isValidFile = allowedExtensions.some(ext => fileName.endsWith(ext))
+
+  if (!isValidFile) {
+    alert(`❌ File tidak didukung!\n\nHanya file .txt yang bisa di-upload saat ini.\nPDF dan DOCX akan segera didukung.\n\nSilakan gunakan fitur Paste Text (Ctrl+V) untuk teks panjang.`)
+    return
+  }
+
   isProcessing.value = true
   analysisStore.setLoading(true)
 
@@ -182,7 +192,7 @@ const goHome = () => {
                 type="file"
                 ref="fileInput"
                 style="display:none"
-                accept=".pdf,.docx"
+                accept=".txt"
                 @change="handleFileChange"
               />
             </div>

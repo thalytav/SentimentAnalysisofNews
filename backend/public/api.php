@@ -59,7 +59,12 @@ if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
         $text = file_get_contents($filePath);
     } else {
         http_response_code(400);
-        echo json_encode(['error' => 'Only .txt files are supported currently. PDF/DOCX coming soon.']);
+        echo json_encode([
+            'success' => false,
+            'error' => 'File tidak didukung. Hanya file .txt yang bisa di-upload saat ini. PDF dan DOCX akan segera didukung.',
+            'supported_formats' => ['.txt'],
+            'coming_soon' => ['.pdf', '.docx']
+        ]);
         exit;
     }
 } elseif (isset($_POST['text'])) {
