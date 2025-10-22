@@ -1,11 +1,125 @@
 # Node
 frontend/node_modules
 frontend/dist
+**/node_modules/
+**/dist/
+**/.npm
+**/.pnpm
+**/.pnpm-store
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
 
 # Python
+**/venv/
+**/__pycache__/
 ai/venv
 ai/__pycache__/
+ml/__pycache__/
+ml/**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/.pytest_cache/
+**/.coverage
+**/htmlcov/
+**/.tox/
+**/.nox/
+**/.hypothesis/
+**/.egg
+**/*.egg-info/
 
 # PHP / Laravel
 backend/vendor
 backend/storage
+**/vendor/
+**/.phpunit.result.cache
+**/.php_cs.cache
+**/.php-cs-fixer.cache
+backend/.env
+backend/.env.backup
+backend/.env.production
+
+# Environment Variables & API Keys
+.env
+**/.env
+ml/.env
+backend/.env
+frontend/.env
+**/config.json
+**/secrets.json
+**/*.pem
+**/*.key
+**/.aws/
+**/.credentials
+**/.netrc
+**/auth.json
+**/*.env.*
+
+# Jupyter Notebook
+**/.ipynb_checkpoints/
+**/checkpoints/
+**/.jupyter/
+**/.ipython/
+
+# ML Models and large data files
+**/models/
+**/*.h5
+**/*.pkl
+**/*.model
+**/*.bin
+**/*.onnx
+**/*.pt
+**/*.pth
+**/*.weights
+**/*.tfrecord
+**/*.pb
+**/*.tflite
+
+# Dataset with potential sensitive content
+ml/testing/Sentiment_dataset.csv
+**/dataset*.csv
+**/sensitive*.csv
+**/private*.csv
+
+# IDE and editor files
+**/.idea/
+**/.vscode/
+**/*.swp
+**/*.swo
+**/*~
+**/.DS_Store
+**/Thumbs.db
+
+# Logs
+**/logs/
+**/*.log
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+**/pip-log.txt
+**/pip-delete-this-directory.txt
+
+# Temporary files
+**/tmp/
+**/temp/
+**/.tmp/
+**/.temp/
+
+# Build artifacts
+**/build/
+**/dist/
+**/public/build/
+**/public/hot
+**/public/storage
+**/storage/*.key
+
+# Laravel specific
+**/Homestead.json
+**/Homestead.yaml
+
+# Test coverage
+**/coverage/
+**/.coverage
+**/htmlcov/
+**/coverage.xml

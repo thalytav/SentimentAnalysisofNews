@@ -44,7 +44,7 @@ function loadEnv($file) {
 loadEnv(__DIR__ . '/../.env');
 
 // Get Gemini API configuration
-$geminiApiKey = getenv('GEMINI_API_KEY') ?: 'AIzaSyBF-YrSXhCODSZFYDyvx-0KzKIljYGmAGs';
+$geminiApiKey = getenv('GEMINI_API_KEY') ?: 'AIzaSyBIh8y9NibKTSKMvL2FpoxMPo2sWYCIOVk';
 $geminiApiUrl = getenv('GEMINI_API_URL') ?: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent';
 
 // Get input (text or file)

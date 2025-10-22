@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Tester - Sentiment Analysis</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            resize: vertical;
+            margin-bottom: 12px;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+        }
+        .result h3 {
+            margin-top: 0;
+            color: #667eea;
+        }
+        .result pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 13px;
+        }
+        .status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .status.loading {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .sample-texts {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+        .sample-btn {
+            background: #f8f9fa;
+            color: #333;
+            border: 2px solid #ddd;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .sample-btn:hover {
+            background: #e9ecef;
+            border-color: #667eea;
+        }
+        .info {
+            background: #e7f3ff;
+            border-left: 4px solid #2196f3;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 API Tester - Sentiment Analysis</h1>
+
+        <div class="info">
+            <strong>ℹ️ Info:</strong> Pastikan backend sudah berjalan di <code>http://localhost:8000</code><br>
+            Jalankan: <code>php -S localhost:8000</code> di folder <code>backend/public</code>
+        </div>
+
+        <div class="test-section">
+            <h2>Test 1: Analisis Teks</h2>
+            <p>Masukkan teks berita dalam bahasa Indonesia:</p>
+
+            <div class="sample-texts">
+                <button class="sample-btn" onclick="setSampleText('positive')">📗 Sample Positif</button>
+                <button class="sample-btn" onclick="setSampleText('negative')">📕 Sample Negatif</button>
+                <button class="sample-btn" onclick="setSampleText('neutral')">📘 Sample Netral</button>
+            </div>
+
+            <textarea id="textInput" rows="6" placeholder="Contoh: Presiden memberikan bantuan kepada rakyat yang membutuhkan...">Presiden memberikan bantuan kepada rakyat yang membutuhkan. Program ini sangat membantu masyarakat yang terdampak bencana. Pemerintah terus berupaya meningkatkan kesejahteraan rakyat.</textarea>
+
+            <button onclick="analyzeText()" id="analyzeBtn">🚀 Analisis Teks</button>
+
+            <div id="result1" class="result" style="display: none;">
+                <h3>Hasil Analisis:</h3>
+                <div id="result1Content"></div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>Test 2: Upload File</h2>
+            <p>Upload file .txt berisi berita:</p>
+            <input type="file" id="fileInput" accept=".txt">
+            <br><br>
+            <button onclick="analyzeFile()" id="fileBtn">📄 Analisis File</button>
+
+            <div id="result2" class="result" style="display: none;">
+                <h3>Hasil Analisis File:</h3>
+                <div id="result2Content"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:8000/api.php';
+
+        const samples = {
+            positive: 'Presiden memberikan bantuan kepada rakyat yang membutuhkan. Program ini sangat membantu masyarakat yang terdampak bencana. Pemerintah terus berupaya meningkatkan kesejahteraan rakyat dengan berbagai program positif.',
+            negative: 'Korupsi merajalela di pemerintahan. Ekonomi memburuk dan rakyat menderita. Banyak pejabat yang terlibat dalam skandal korupsi yang merugikan negara.',
+            neutral: 'Presiden menghadiri rapat kabinet hari ini. Agenda yang dibahas meliputi berbagai kebijakan pemerintah. Pertemuan berlangsung selama tiga jam di istana negara.'
+        };
+
+        function setSampleText(type) {
+            document.getElementById('textInput').value = samples[type];
+        }
+
+        async function analyzeText() {
+            const text = document.getElementById('textInput').value;
+            const resultDiv = document.getElementById('result1');
+            const contentDiv = document.getElementById('result1Content');
+            const btn = document.getElementById('analyzeBtn');
+
+            if (!text.trim()) {
+                alert('Masukkan teks terlebih dahulu!');
+                return;
+            }
+
+            // Show loading
+            resultDiv.style.display = 'block';
+            contentDiv.innerHTML = '<span class="status loading">⏳ Memproses...</span>';
+            btn.disabled = true;
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ text })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    contentDiv.innerHTML = `
+                        <span class="status success">✅ Berhasil</span>
+                        <h4>Sentiment: ${data.sentiment}</h4>
+                        <p><strong>Score:</strong> ${data.sentiment_score}</p>
+                        <p><strong>Details:</strong> ${data.sentiment_details}</p>
+                        <hr>
+                        <h4>Readability</h4>
+                        <p><strong>Score:</strong> ${data.readability}</p>
+                        <p><strong>Category:</strong> ${data.readability_category}</p>
+                        <p><strong>Word Count:</strong> ${data.word_count}</p>
+                        <p><strong>Sentence Count:</strong> ${data.sentence_count}</p>
+                        <hr>
+                        <details>
+                            <summary><strong>Full Response (JSON)</strong></summary>
+                            <pre>${JSON.stringify(data, null, 2)}</pre>
+                        </details>
+                    `;
+                } else {
+                    contentDiv.innerHTML = `
+                        <span class="status error">❌ Error</span>
+                        <p>${data.error || 'Unknown error'}</p>
+                        <pre>${JSON.stringify(data, null, 2)}</pre>
+                    `;
+                }
+            } catch (error) {
+                contentDiv.innerHTML = `
+                    <span class="status error">❌ Network Error</span>
+                    <p>${error.message}</p>
+                    <p><strong>Tip:</strong> Pastikan backend sudah berjalan di http://localhost:8000</p>
+                `;
+            } finally {
+                btn.disabled = false;
+            }
+        }
+
+        async function analyzeFile() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            const resultDiv = document.getElementById('result2');
+            const contentDiv = document.getElementById('result2Content');
+            const btn = document.getElementById('fileBtn');
+
+            if (!file) {
+                alert('Pilih file terlebih dahulu!');
+                return;
+            }
+
+            // Show loading
+            resultDiv.style.display = 'block';
+            contentDiv.innerHTML = '<span class="status loading">⏳ Memproses file...</span>';
+            btn.disabled = true;
+
+            try {
+                const formData = new FormData();
+                formData.append('file', file);
+
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    contentDiv.innerHTML = `
+                        <span class="status success">✅ Berhasil</span>
+                        <h4>Sentiment: ${data.sentiment}</h4>
+                        <p><strong>Score:</strong> ${data.sentiment_score}</p>
+                        <p><strong>Details:</strong> ${data.sentiment_details}</p>
+                        <hr>
+                        <h4>Readability</h4>
+                        <p><strong>Score:</strong> ${data.readability}</p>
+                        <p><strong>Category:</strong> ${data.readability_category}</p>
+                        <p><strong>Word Count:</strong> ${data.word_count}</p>
+                        <p><strong>Sentence Count:</strong> ${data.sentence_count}</p>
+                        <hr>
+                        <h4>Text Preview:</h4>
+                        <p>${data.text}</p>
+                        <hr>
+                        <details>
+                            <summary><strong>Full Response (JSON)</strong></summary>
+                            <pre>${JSON.stringify(data, null, 2)}</pre>
+                        </details>
+                    `;
+                } else {
+                    contentDiv.innerHTML = `
+                        <span class="status error">❌ Error</span>
+                        <p>${data.error || 'Unknown error'}</p>
+                        <pre>${JSON.stringify(data, null, 2)}</pre>
+                    `;
+                }
+            } catch (error) {
+                contentDiv.innerHTML = `
+                    <span class="status error">❌ Network Error</span>
+                    <p>${error.message}</p>
+                    <p><strong>Tip:</strong> Pastikan backend sudah berjalan di http://localhost:8000</p>
+                `;
+            } finally {
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>

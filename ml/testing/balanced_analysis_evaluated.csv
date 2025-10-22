@@ -1,0 +1,145 @@
+title,url,sentiment_dataset,gemini_sentiment,deepseek_sentiment,bert_sentiment,gemini_response,deepseek_response,bert_scores,dataset_category,gemini_match,deepseek_match,bert_match
+This company is making cheap condoms for Nigeria and other African countries,https://www.pulse.ng/bi/lifestyle/company-makes-cheap-condoms-for-nigeria-other-african-nations-id9155159.html,1.0,Positif,Error,Error,"Oke, mari kita analisis sentimen dan keterbacaan dari berita tersebut.
+
+**Analisis Sentimen:**
+
+Sentimen keseluruhan dari berita ini cenderung **positif**, meskipun dengan sedikit nada peringatan. Berikut rinciannya:
+
+*   **Positif:**
+    *   **Inisiatif perusahaan:** Pengenalan kondom murah oleh Durex (""Feels"") adalah langkah positif untuk meningkatkan akses ke alat kontrasepsi di Afrika, terutama di negara-negara seperti Nigeria dan Afrika Selatan.
+    *   **Tujuan sosial:** Perusahaan memiliki tujuan untuk menormalkan percakapan tentang penggunaan kondom, yang dapat membantu mengurangi stigma dan meningkatkan kesadaran.
+    *   **Donasi:** Donasi dari Durex dan Bill and Melinda Gates Foundation ke Global Fund adalah tindakan positif untuk memerangi penyebaran HIV/AIDS.
+    *   **Komitmen pemerintah:** Janji pemerintah federal untuk mengakhiri epidemi HIV/AIDS pada tahun 2030 adalah sinyal positif.
+
+    **Kata kunci positif:** ""cheap condoms"", ""normalize the conversation"", ""donate"", ""fight the spread of the disease"", ""end the HIV/AIDs epidemic"".
+
+*   **Negatif:**
+    *   **Statistik yang mengkhawatirkan:** Berita ini menyoroti tingginya angka infeksi HIV di Afrika, khususnya di Nigeria dan Afrika Selatan. Angka-angka ini mengkhawatirkan dan menunjukkan urgensi masalah ini.
+    *   **Masalah ukuran kondom:** Keluhan tentang ukuran kondom impor yang terlalu kecil menunjukkan adanya kebutuhan yang belum terpenuhi dan potensi masalah dalam efektivitas pencegahan.
+
+    **Kata kunci negatif:** ""infected persons"", ""new HIV infections"", ""highest rates of new infection"", ""unprotected heterosexual sex"", ""condoms imported from China are too small"".
+
+*   **Netral:**
+    *   **Fakta dan angka:** Beberapa bagian dari berita ini bersifat faktual, seperti harga kondom dan informasi tentang Global Fund.
+
+**Alasan:**
+
+Meskipun berita ini membahas masalah serius seperti penyebaran HIV/AIDS, fokus utamanya adalah pada solusi dan upaya yang dilakukan untuk mengatasi masalah ini. Inisiatif dari Durex, donasi, dan komitmen pemerintah memberikan harapan dan menunjukkan adanya kemajuan dalam memerangi penyakit ini. Oleh karena itu, sentimen keseluruhan cenderung positif.
+
+**Analisis Keterbacaan:**
+
+Untuk menganalisis keterbacaan, kita dapat menggunakan beberapa metrik. Namun, karena saya tidak dapat menjalankan alat analisis keterbacaan secara langsung, saya akan memberikan perkiraan berdasarkan observasi:
+
+*   **Struktur kalimat:** Kalimat-kalimat dalam berita ini umumnya cukup panjang dan kompleks. Ini bisa membuat teks sedikit sulit dibaca bagi sebagian orang.
+*   **Kosakata:** Kosakata yang digunakan cukup formal dan mungkin mengandung beberapa istilah teknis (misalnya, ""Reckitt Benckiser Group Plc"", ""Global Fund"", ""Sustainable Development Goals"").
+*   **Organisasi teks:** Teks diorganisasikan dengan baik, dengan pengantar, detail tentang inisiatif Durex, informasi tentang HIV/AIDS di Nigeria, dan kesimpulan. Ini membantu pembaca untuk mengikuti alur informasi.
+
+**Kesimpulan Keterbacaan:**
+
+Secara keseluruhan, keterbacaan teks ini berada pada tingkat **sedang**. Ini mungkin cocok untuk pembaca dengan tingkat pendidikan menengah atau tinggi. Untuk membuat teks lebih mudah diakses oleh khalayak yang lebih luas, kalimat yang lebih pendek dan sederhana, serta penjelasan istilah teknis, dapat membantu.",{'error': 'Error saat mengirim permintaan ke deepseek: 401 Client Error: Unauthorized for url: https://openrouter.ai/api/v1/chat/completions'},Error,Positif,True,False,False
+India Will Ban All Single-Use Plastics by 2022,https://www.globalcitizen.org/en/content/india-plastic-ban-single-use-2022-modi-pollution-w/,1.0,Positif,Error,Error,"Tentu, berikut adalah analisis sentimen dan keterbacaan dari berita tersebut:
+
+**Analisis Sentimen:**
+
+*   **Sentimen Keseluruhan:** Positif. Berita ini secara umum menyampaikan sentimen positif karena berfokus pada tindakan dan inisiatif untuk mengatasi masalah polusi plastik.
+*   **Alasan:**
+    *   Berita ini menyoroti upaya signifikan yang dilakukan oleh India untuk melarang plastik sekali pakai, yang digambarkan sebagai ""lompatan paling penting"" dan ""paling ambisius"".
+    *   Kutipan dari Perdana Menteri Modi menekankan pentingnya lingkungan yang bersih dan perlunya tindakan global untuk mengatasi polusi plastik.
+    *   Berita ini juga menyebutkan tindakan serupa yang diambil oleh negara lain dan laporan PBB yang mengkonfirmasi peningkatan kesadaran dan tindakan global terhadap polusi plastik.
+*   **Kata-kata Kunci yang Mendukung Sentimen Positif:**
+    *   ""revolution has just got serious""
+    *   ""most important leap forward""
+    *   ""most ambitious""
+    *   ""huge step forwards""
+    *   ""beat plastic pollution and make this planet a better place to live""
+
+**Analisis Keterbacaan (Readability):**
+
+Untuk analisis keterbacaan yang lebih akurat, kita dapat menggunakan formula keterbacaan seperti Flesch Reading Ease atau Flesch-Kincaid Grade Level. Karena saya tidak dapat menjalankan perhitungan langsung di sini, saya akan memberikan perkiraan berdasarkan kompleksitas teks:
+
+*   **Kompleksitas Umum:** Teks ini memiliki kompleksitas sedang.
+*   **Struktur Kalimat:** Struktur kalimat bervariasi, dengan beberapa kalimat pendek dan langsung, sementara yang lain lebih panjang dan kompleks.
+*   **Kosakata:** Kosakata yang digunakan cukup umum dan mudah dipahami, meskipun ada beberapa istilah teknis seperti ""biodegradable"" dan ""marine litter"" yang mungkin memerlukan pemahaman lebih lanjut bagi sebagian pembaca.
+*   **Perkiraan Tingkat Kelas:** Berdasarkan perkiraan, teks ini mungkin berada di sekitar tingkat kelas 8-10 (Sekolah Menengah Pertama/Atas). Ini berarti teks ini dapat dipahami oleh sebagian besar orang dewasa dengan tingkat pendidikan menengah.
+
+**Kesimpulan:**
+
+Berita ini secara umum menyampaikan sentimen positif tentang upaya global untuk mengatasi polusi plastik, dengan fokus pada inisiatif yang diambil oleh India. Teks ini memiliki tingkat keterbacaan yang sedang, membuatnya dapat diakses oleh sebagian besar pembaca dewasa.",{'error': 'Error saat mengirim permintaan ke deepseek: 401 Client Error: Unauthorized for url: https://openrouter.ai/api/v1/chat/completions'},Error,Positif,True,False,False
+'Iron Man' star Robert Downey Jr. sends special message to Bluffs boy with brain cancer,https://www.omaha.com/livewellnebraska/iron-man-star-robert-downey-jr-sends-special-message-to/article_11bba8ae-36a1-55c7-a32b-3a05c37233f5.html,1.0,Positif,Error,Error,"Teks berita ini memiliki sentimen yang **positif**, meskipun berakar dari situasi yang sulit (operasi otak). Berikut adalah analisisnya:
+
+**Alasan Sentimen Positif:**
+
+*   **Fokus pada ketahanan dan harapan:** Berita ini berfokus pada bagaimana keluarga dan komunitas merespon tantangan kesehatan Jackson dengan cara yang positif. Ada penekanan pada pemenuhan keinginan Jackson dan menciptakan kenangan indah.
+*   **Kebaikan dan dukungan komunitas:** Berita ini menyoroti tindakan kebaikan orang lain, seperti staf rumah sakit yang mendekorasi kamar Jackson, teman keluarga yang memberikan bola yang ditandatangani oleh Peyton Manning, dan terutama, Sue Wheeler yang membantu mewujudkan impian Jackson untuk bertemu ""Iron Man.""
+*   **Pencapaian tujuan:** Meskipun Jackson menghadapi masalah kesehatan, berita ini berfokus pada pencapaian beberapa tujuan dalam daftar keinginannya, seperti melihat Broncos bermain, mengunjungi kebun binatang, dan tur Kinnick Stadium.
+
+**Kata-kata Penyebab Sentimen Positif:**
+
+*   ""decorated Jackson's room with Denver Broncos memorabilia"" (menunjukkan kepedulian dan upaya untuk membuat Jackson merasa nyaman)
+*   ""Jackson's favorite NFL team was the eventual victor"" (kebahagiaan terkait tim favoritnya menang)
+*   ""special bucket list of things Jackson would like to do to ensure that he has experiences along the way that he can treasure"" (fokus pada menciptakan pengalaman positif dan berharga)
+*   ""He got to see the Broncos play, a family friend got him a football signed by Peyton Manning, he got to see tigers and mermaids at an indoor zoo in Denver and he got to tour Kinnick Stadium"" (pencapaian tujuan yang memberikan kebahagiaan)
+*   ""Meeting “the real Iron Man — Tony Stark” was the last item on the list"" (harapan dan impian yang ingin diwujudkan)
+*   ""Someone"" turned out to be Council Bluffs resident Sue Wheeler, who has a friend in the movie industry"" (keajaiban dan bantuan yang tak terduga)
+*   ""keeping tabs"" on Jackson's story (perhatian dan kepedulian dari orang lain)
+
+**Kata-kata Penyebab Sentimen Negatif (namun dinetralisir oleh sentimen positif):**
+
+*   ""brain surgery"" (operasi otak, yang secara inheren negatif)
+*   ""the first of many"" (operasi pertama dari banyak operasi, mengindikasikan perjuangan yang berkelanjutan)
+
+**Analisis Keterbacaan (Readability):**
+
+Untuk memberikan analisis keterbacaan yang akurat, kita memerlukan formula keterbacaan (seperti Flesch Reading Ease, Gunning Fog Index, atau SMOG Grade). Namun, berdasarkan kesan umum, teks ini memiliki keterbacaan yang **sedang**.
+
+*   **Struktur Kalimat:** Struktur kalimatnya bervariasi, dengan beberapa kalimat pendek dan langsung, dan beberapa kalimat yang lebih panjang dan kompleks.
+*   **Kosakata:** Kosakatanya relatif mudah dipahami, meskipun ada beberapa referensi budaya (Super Bowl, Peyton Manning, Iron Man, Kinnick Stadium, Hawkeyes) yang mungkin memerlukan pengetahuan latar belakang.
+*   **Organisasi:** Informasi disajikan secara kronologis dan tematis, membuatnya relatif mudah untuk diikuti.
+
+Secara keseluruhan, teks ini kemungkinan cocok untuk pembaca dengan tingkat membaca menengah ke atas. Untuk membuatnya lebih mudah dibaca, kalimat yang lebih panjang dapat dipecah menjadi kalimat yang lebih pendek, dan referensi budaya dapat dijelaskan secara singkat.
+",{'error': 'Error saat mengirim permintaan ke deepseek: 401 Client Error: Unauthorized for url: https://openrouter.ai/api/v1/chat/completions'},Error,Positif,True,False,False
+We Reported on a Nonprofit Hospital System That Sues Poor Patients. It Just Freed Thousands From Debt.,https://www.propublica.org/article/we-reported-on-a-nonprofit-hospital-system-that-sues-poor-patients-it-just-freed-thousands-from-debt,1.0,Positif,Error,Error,"Berikut adalah analisis sentimen dan keterbacaan dari berita tersebut:
+
+**Analisis Sentimen:**
+
+*   **Sentimen Keseluruhan: Positif.** Meskipun berita ini awalnya mengungkap praktik negatif (penagihan hutang agresif oleh rumah sakit nirlaba), fokus utamanya adalah pada perbaikan dan perubahan positif yang terjadi setelah investigasi.
+*   **Alasan:**
+    *   **Perubahan Positif:** Berita ini menyoroti tindakan rumah sakit untuk menghapus hutang ribuan pasien. Frasa seperti ""erased the debts,"" ""dramatic shift,"" dan ""Methodist's turnaround"" menunjukkan perubahan yang menguntungkan.
+    *   **Dampak Positif:** Berita ini menekankan dampak positif dari perubahan ini pada individu seperti Carrie Barrett. Kutipannya, ""'The balance is zero. ... You don’t know how good that sounds to my ears,'"" secara eksplisit menyatakan kelegaan dan kebahagiaan.
+    *   **Kritik Sebelumnya:** Sementara berita mengakui kritik sebelumnya terhadap praktik rumah sakit, kritik ini berfungsi sebagai latar belakang untuk menyoroti kontras dengan tindakan positif yang terjadi.
+*   **Kata-kata Penyebab Sentimen:**
+    *   **Positif:** ""erased the debts,"" ""dramatic shift,"" ""turnaround,"" ""elated,"" ""balance is zero,"" ""good that sounds to my ears,"" ""rectify the harm.""
+    *   **Negatif (Namun diimbangi oleh perubahan):** ""abuses of power,"" ""debt lawsuits,"" ""doggedly pursued,"" ""garnishing their meager paychecks,"" ""collection agency,"" ""roundly criticized.""
+
+**Analisis Keterbacaan (Readability):**
+
+Untuk menganalisis keterbacaan, kita dapat menggunakan beberapa metrik umum. Karena saya tidak dapat menjalankan alat keterbacaan secara langsung di sini, saya akan memberikan perkiraan berdasarkan pengalaman dan observasi teks:
+
+*   **Panjang Kalimat:** Kalimat-kalimat dalam berita ini cenderung memiliki panjang sedang. Ada variasi dalam panjang kalimat, yang membantu menjaga minat pembaca.
+*   **Kosakata:** Kosakata yang digunakan relatif mudah dipahami oleh audiens umum. Meskipun ada beberapa istilah hukum dan keuangan (""garnishment,"" ""attorney's fees""), mereka dijelaskan dalam konteks.
+*   **Struktur Paragraf:** Paragraf-paragrafnya terstruktur dengan baik dan fokus pada satu ide utama. Ini membuat teks lebih mudah diikuti.
+*   **Formula Keterbacaan:** Berdasarkan perkiraan, teks ini kemungkinan besar akan mendapatkan skor di sekitar kelas 10-12 pada skala Flesch-Kincaid. Artinya, teks ini cocok untuk pembaca dengan tingkat pendidikan sekolah menengah atas.
+
+**Kesimpulan:**
+
+Berita ini memiliki sentimen positif karena berfokus pada tindakan rumah sakit untuk memperbaiki kesalahan masa lalu dan meringankan beban keuangan pasien. Teksnya ditulis dengan jelas dan mudah dimengerti oleh audiens luas, meskipun beberapa pengetahuan tentang sistem hukum dan keuangan mungkin bermanfaat.",{'error': 'Error saat mengirim permintaan ke deepseek: 401 Client Error: Unauthorized for url: https://openrouter.ai/api/v1/chat/completions'},Error,Positif,True,False,False
+Man removes Nazi swastika tattoos after unlikely friendship,http://abcnews.go.com/US/man-removes-nazi-swastika-tattoos-friendship/story?id=49496501&cid=social_fb_abcn,1.0,Positif,Error,Error,"Analisis sentimen dari berita tersebut jelas **positif**. Berikut alasannya dan kata-kata yang menjadi penyebab:
+
+*   **Perubahan dan Transformasi:** Fokus utama berita adalah transformasi dari seorang neo-Nazi menjadi seseorang yang meninggalkan ideologi kebencian. Kata-kata seperti ""covered up"" (menutupi swastika), ""changing his views"" (mengubah pandangannya), ""take down the Nazi flags"" (menurunkan bendera Nazi), ""replace them with smiley faces"" (menggantinya dengan gambar senyum), ""redemption"" (penebusan) menunjukkan adanya perubahan positif.
+*   **Pengaruh Positif:** Peran Tiffany Whittier, seorang petugas pembebasan bersyarat Afrika-Amerika, sangat penting dalam perubahan Kent. Kata-kata seperti ""helping him"" (membantunya), ""positive person"" (orang positif), ""inspired"" (menginspirasi), ""look at her as family"" (menganggapnya sebagai keluarga) menunjukkan pengaruh positif Whittier.
+*   **Harapan dan Masa Depan:** Kent memiliki harapan untuk masa depan yang lebih baik, terutama untuk anak-anaknya. Kata-kata seperti ""good father"" (ayah yang baik), ""hard worker"" (pekerja keras), ""good provider"" (penyedia yang baik), ""I don't want my kids to live the life I lived"" (Saya tidak ingin anak-anak saya menjalani hidup seperti yang saya jalani) menunjukkan harapan untuk masa depan yang lebih baik.
+*   **Penerimaan dan Integrasi:** Kent kini bekerja di sebuah peternakan ayam di mana semua rekan kerjanya adalah orang Hispanik. Kata-kata seperti ""company parties"" (pesta perusahaan), ""quinceañeras"" (pesta quinceañera), ""I'm the only white guy there!"" (Saya satu-satunya orang kulit putih di sana!) menunjukkan penerimaan dan integrasi ke dalam komunitas yang sebelumnya tidak akan ia terima.
+*   **Kesempatan Kedua dan Penebusan:** Organisasi nirlaba Redemption Ink membantu Kent menghapus tato kebenciannya. Hal ini memberikan kesempatan kedua dan menekankan tema penebusan. Kata-kata seperti ""free removals"" (penghapusan gratis), ""helped connect"" (membantu menghubungkan), ""move forward"" (bergerak maju) menyoroti aspek penebusan.
+
+Secara keseluruhan, berita ini menceritakan kisah penebusan, perubahan, dan harapan, yang semuanya merupakan elemen sentimen positif.
+
+**Analisis Keterbacaan (Readability):**
+
+Tanpa menggunakan alat ukur keterbacaan formal, kita dapat memperkirakan tingkat keterbacaannya. Berdasarkan struktur kalimat, pilihan kata, dan kompleksitas ide, teks ini tampaknya memiliki tingkat keterbacaan **sedang**.
+
+*   **Kalimat:** Rata-rata panjang kalimat sedang. Tidak terlalu pendek dan tidak terlalu panjang dan kompleks.
+*   **Kosakata:** Sebagian besar kata-kata yang digunakan mudah dipahami. Ada beberapa istilah seperti ""neo-Nazi"" dan ""quinceañeras"" yang mungkin tidak familiar bagi semua orang, tetapi konteksnya membantu memahami artinya.
+*   **Struktur:** Teks ini terstruktur dengan baik dan mudah diikuti. Alur cerita jelas.
+
+Dengan demikian, berita ini kemungkinan besar dapat dipahami oleh sebagian besar pembaca, meskipun beberapa mungkin perlu mencari definisi beberapa kata. Tingkat keterbacaannya kemungkinan berada di sekitar kelas 8-10 (SMP/SMA). Untuk analisis yang lebih akurat, disarankan untuk menggunakan alat ukur keterbacaan seperti Flesch Reading Ease atau SMOG Grade.
+",{'error': 'Error saat mengirim permintaan ke deepseek: 401 Client Error: Unauthorized for url: https://openrouter.ai/api/v1/chat/completions'},Error,Positif,True,False,False

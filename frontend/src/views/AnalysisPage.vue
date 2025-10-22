@@ -1,20 +1,57 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import { useAnalysisStore } from '@/stores/analysis'
+
+const router = useRouter()
+const analysisStore = useAnalysisStore()
 
 const activeTab = ref('sentiment')
 const entitiesExpanded = ref(true)
 const themesExpanded = ref(true)
 const keywordsExpanded = ref(false)
 
-// Sample data
-const sentimentData = {
-    positive: 50.0,
-    negative: 25.0,
-    neutral: 25.0,
-    overallScore: 0.50,
-    overallSentiment: 'positif'
-}
+// Computed properties dari store
+const sentimentData = computed(() => {
+    if (!analysisStore.result) {
+        return {
+            positive: 0,
+            negative: 0,
+            neutral: 0,
+            overallScore: 0,
+            overallSentiment: 'neutral'
+        }
+    }
 
+    const percentages = analysisStore.sentimentPercentages
+    return {
+        positive: percentages.positive,
+        negative: percentages.negative,
+        neutral: percentages.neutral,
+        overallScore: analysisStore.result.sentiment_score,
+        overallSentiment: analysisStore.result.sentiment.toLowerCase()
+    }
+})
+
+const readabilityData = computed(() => {
+    if (!analysisStore.result) return null
+    return {
+        score: analysisStore.result.readability,
+        category: analysisStore.result.readability_category,
+        wordCount: analysisStore.result.word_count,
+        sentenceCount: analysisStore.result.sentence_count
+    }
+})
+
+const analysisText = computed(() => {
+    return analysisStore.result?.text || ''
+})
+
+const sentimentDetails = computed(() => {
+    return analysisStore.result?.sentiment_details || ''
+})
+
+// Sample entities (bisa dikembangkan dari backend)
 const entities = [
     { name: 'ITS', magnitude: '2.0', score: '+0.78', sentiment: 'positive' },
     { name: 'Surabaya', magnitude: '3.0', score: '+0.63', sentiment: 'positive' },
@@ -23,7 +60,15 @@ const entities = [
     { name: 'BEM-ITS', magnitude: '1.5', score: '+0.20', sentiment: 'neutral' }
 ]
 
+onMounted(() => {
+    // Redirect ke home jika tidak ada hasil analisis
+    if (!analysisStore.hasResult) {
+        router.push('/')
+    }
+})
+
 const goHome = () => {
+    analysisStore.clearResult()
     window.location.href = '/'
 }
 
@@ -39,6 +84,13 @@ const getSentimentColor = (sentiment: string) => {
         default: return '#C9DEFB'
     }
 }
+
+const getMeterColor = computed(() => {
+    const sentiment = sentimentData.value.overallSentiment
+    if (sentiment === 'positive') return '#55C895'
+    if (sentiment === 'negative') return '#F75D51'
+    return '#FFE14F'
+})
 </script>
 
 <template>
@@ -98,8 +150,51 @@ const getSentimentColor = (sentiment: string) => {
             </div>
 
             <div class="dashboard-content">
-            <!-- Left Sidebar - Sentiment Score Card -->
-            <div class="sentiment-card">
+            <!-- Tab Content: Readability -->
+            <div v-if="activeTab === 'readability'" class="sentiment-card">
+                <div class="card-header">
+                <h2 class="card-title">Skor Readability</h2>
+                <button class="help-btn">?</button>
+                </div>
+                <p class="card-subtitle">Tingkat Keterbacaan</p>
+
+                <div class="sentiment-meter-container">
+                <div class="readability-score">
+                    <div class="score-circle">
+                    <span class="score-number">{{ readabilityData?.score.toFixed(1) || 0 }}</span>
+                    <span class="score-label">/ 100</span>
+                    </div>
+                </div>
+                </div>
+
+                <div class="percentages">
+                <div class="percentage-item">
+                    <h3 class="percentage-label">Kategori</h3>
+                    <p class="percentage-value">{{ readabilityData?.category || 'N/A' }}</p>
+                </div>
+                <div class="percentage-row">
+                    <div class="percentage-item">
+                    <h3 class="percentage-label">Jumlah Kata</h3>
+                    <p class="percentage-value">{{ readabilityData?.wordCount || 0 }}</p>
+                    </div>
+                    <div class="percentage-item">
+                    <h3 class="percentage-label">Jumlah Kalimat</h3>
+                    <p class="percentage-value">{{ readabilityData?.sentenceCount || 0 }}</p>
+                    </div>
+                </div>
+                </div>
+
+                <div class="overall-rating">
+                <h3 class="rating-title">Penjelasan</h3>
+                <p class="rating-text">
+                    Teks ini memiliki tingkat keterbacaan <strong>{{ readabilityData?.category }}</strong>
+                    dengan skor {{ readabilityData?.score.toFixed(1) }}. Rata-rata {{ (readabilityData?.wordCount / readabilityData?.sentenceCount).toFixed(1) }} kata per kalimat.
+                </p>
+                </div>
+            </div>
+
+            <!-- Tab Content: Sentiment -->
+            <div v-if="activeTab === 'sentiment'" class="sentiment-card">
                 <div class="card-header">
                 <h2 class="card-title">Skor Sentimen</h2>
                 <button class="help-btn">?</button>
@@ -129,12 +224,12 @@ const getSentimentColor = (sentiment: string) => {
                     class="meter-arc positive-arc"/>
                     
                     <!-- Center circle (smiley face) -->
-                    <circle cx="132" cy="131.6" r="69.6" fill="#55C895"/>
+                    <circle cx="132" cy="131.6" r="69.6" :fill="getMeterColor"/>
                     <circle cx="103.725" cy="118.55" r="13.05" fill="#F5F5F7"/>
                     <circle cx="158.1" cy="118.55" r="13.05" fill="#F5F5F7"/>
-                    <path d="M106.987 154.438C109.174 159.15 117.134 168.575 131.474 168.575C145.815 168.575 153.774 159.15 155.961 154.438" 
-                    stroke="#F5F5F7" 
-                    stroke-width="7.2" 
+                    <path d="M106.987 154.438C109.174 159.15 117.134 168.575 131.474 168.575C145.815 168.575 153.774 159.15 155.961 154.438"
+                    stroke="#F5F5F7"
+                    stroke-width="7.2"
                     stroke-linecap="round"/>
                 </svg>
                 </div>
@@ -161,8 +256,19 @@ const getSentimentColor = (sentiment: string) => {
                 <div class="overall-rating">
                 <h3 class="rating-title">Rating Keseluruhan</h3>
                 <p class="rating-text">
-                    Teks ini secara keseluruhan memiliki sentimen yang 
-                    <span class="positive-text">positif (+{{ sentimentData.overallScore }})</span>
+                    Teks ini secara keseluruhan memiliki sentimen yang
+                    <span
+                        :class="{
+                            'positive-text': sentimentData.overallSentiment === 'positive',
+                            'negative-text': sentimentData.overallSentiment === 'negative',
+                            'neutral-text': sentimentData.overallSentiment === 'neutral'
+                        }"
+                    >
+                        {{ sentimentData.overallSentiment }} ({{ sentimentData.overallScore.toFixed(2) }})
+                    </span>
+                </p>
+                <p class="rating-text" v-if="sentimentDetails" style="margin-top: 12px; font-size: 14px; color: #6B7280;">
+                    {{ sentimentDetails }}
                 </p>
                 </div>
             </div>
@@ -179,7 +285,7 @@ const getSentimentColor = (sentiment: string) => {
                         <button class="help-btn">?</button>
                     </div>
                     <div class="score-values">
-                        <span class="score-value positive-dark">0.50</span>
+                        <span class="score-value positive-dark">{{ (sentimentData.positive / 100).toFixed(2) }}</span>
                         <span class="score-max">dari 1.0</span>
                     </div>
                     </div>
@@ -193,7 +299,7 @@ const getSentimentColor = (sentiment: string) => {
                         <button class="help-btn">?</button>
                     </div>
                     <div class="score-values">
-                        <span class="score-value negative-dark">0.25</span>
+                        <span class="score-value negative-dark">{{ (sentimentData.negative / 100).toFixed(2) }}</span>
                         <span class="score-max">dari 1.0</span>
                     </div>
                     </div>
@@ -207,7 +313,7 @@ const getSentimentColor = (sentiment: string) => {
                         <button class="help-btn">?</button>
                     </div>
                     <div class="score-values">
-                        <span class="score-value neutral-dark">0.25</span>
+                        <span class="score-value neutral-dark">{{ (sentimentData.neutral / 100).toFixed(2) }}</span>
                         <span class="score-max">dari 1.0</span>
                     </div>
                     </div>
@@ -966,5 +1072,49 @@ const getSentimentColor = (sentiment: string) => {
     .tab-btn {
         justify-content: center;
     }
+}
+
+/* Readability Score Styles */
+.readability-score {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+}
+
+.score-circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+}
+
+.score-number {
+    font-size: 56px;
+    font-weight: 700;
+    color: white;
+    line-height: 1;
+}
+
+.score-label {
+    font-size: 18px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 8px;
+}
+
+.negative-text {
+    color: #F75D51;
+    font-weight: 600;
+}
+
+.neutral-text {
+    color: #FFE14F;
+    font-weight: 600;
 }
 </style>

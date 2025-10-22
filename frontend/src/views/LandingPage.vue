@@ -2,12 +2,16 @@
 import { ref } from 'vue'
 import { onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { useAnalysisStore } from '@/stores/analysis'
+import { analyzeFile, analyzeText, analyzeUrl } from '@/services/api'
 
 const router = useRouter()
+const analysisStore = useAnalysisStore()
 const uploadedFile = ref<File|null>(null)
 const uploadedUrl = ref<string>('')
 const fileInput = ref<HTMLInputElement|null>(null)
 const isDragging = ref(false)
+const isProcessing = ref(false)
 
 onMounted(() => {
   document.body.addEventListener('dragover', preventDefault)
@@ -25,38 +29,97 @@ const uploadDocument = () => {
   fileInput.value?.click()
 }
 
-const handleFileChange = (e: Event) => {
+const handleFileChange = async (e: Event) => {
   const files = (e.target as HTMLInputElement).files
   if (files && files[0]) {
     uploadedFile.value = files[0]
-    alert(`File uploaded: ${files[0].name}`)
-    router.push('/analyze') // Redirect setelah upload
+    await processFile(files[0])
   }
 }
 
-const handleDrop = (e: DragEvent) => {
+const handleDrop = async (e: DragEvent) => {
   e.preventDefault()
+  isDragging.value = false
   if (e.dataTransfer?.files && e.dataTransfer.files[0]) {
     uploadedFile.value = e.dataTransfer.files[0]
-    alert(`File uploaded: ${e.dataTransfer.files[0].name}`)
-    router.push('/analyze') // Redirect setelah upload
+    await processFile(e.dataTransfer.files[0])
   }
 }
 
-const handlePaste = (e: ClipboardEvent) => {
+const handlePaste = async (e: ClipboardEvent) => {
   // Paste file
   if (e.clipboardData?.files && e.clipboardData.files.length > 0) {
     uploadedFile.value = e.clipboardData.files[0]
-    alert(`File uploaded: ${e.clipboardData.files[0].name}`)
-    router.push('/analyze') // Redirect setelah upload
+    await processFile(e.clipboardData.files[0])
     return
   }
-  // Paste URL
+  // Paste text atau URL
   const text = e.clipboardData?.getData('text')
-  if (text && (text.startsWith('http://') || text.startsWith('https://'))) {
-    uploadedUrl.value = text
-    alert(`URL pasted: ${text}`)
-    router.push('/analyze') // Redirect setelah upload
+  if (text) {
+    if (text.startsWith('http://') || text.startsWith('https://')) {
+      uploadedUrl.value = text
+      await processUrl(text)
+    } else if (text.length > 10) {
+      // Jika teks panjang, analisis langsung
+      await processText(text)
+    }
+  }
+}
+
+const processFile = async (file: File) => {
+  if (isProcessing.value) return
+
+  isProcessing.value = true
+  analysisStore.setLoading(true)
+
+  try {
+    const result = await analyzeFile(file)
+    analysisStore.setResult(result)
+    router.push('/analyze')
+  } catch (error) {
+    alert(`Error: ${error instanceof Error ? error.message : 'Gagal menganalisis file'}`)
+    analysisStore.setError(error instanceof Error ? error.message : 'Gagal menganalisis file')
+  } finally {
+    isProcessing.value = false
+    analysisStore.setLoading(false)
+  }
+}
+
+const processText = async (text: string) => {
+  if (isProcessing.value) return
+
+  isProcessing.value = true
+  analysisStore.setLoading(true)
+
+  try {
+    const result = await analyzeText(text)
+    analysisStore.setResult(result)
+    router.push('/analyze')
+  } catch (error) {
+    alert(`Error: ${error instanceof Error ? error.message : 'Gagal menganalisis teks'}`)
+    analysisStore.setError(error instanceof Error ? error.message : 'Gagal menganalisis teks')
+  } finally {
+    isProcessing.value = false
+    analysisStore.setLoading(false)
+  }
+}
+
+const processUrl = async (url: string) => {
+  if (isProcessing.value) return
+
+  isProcessing.value = true
+  analysisStore.setLoading(true)
+
+  try {
+    const result = await analyzeUrl(url)
+    analysisStore.setResult(result)
+    router.push('/analyze')
+  } catch (error) {
+    alert(`Error: ${error instanceof Error ? error.message : 'Gagal menganalisis URL'}`)
+    analysisStore.setError(error instanceof Error ? error.message : 'Gagal menganalisis URL')
+  } finally {
+    isProcessing.value = false
+    analysisStore.setLoading(false)
   }
 }
 

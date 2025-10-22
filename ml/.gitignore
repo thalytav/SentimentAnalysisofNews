@@ -1,0 +1,40 @@
+# ML specific gitignore
+
+# Environment variables & API keys
+.env
+*.env
+.env.*
+config.json
+secrets.json
+api_keys.txt
+
+# Datasets with potential sensitive information
+testing/Sentiment_dataset.csv
+**/*dataset*.csv
+**/data/*.csv
+
+# Cache and temporary files
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+# Model files (can be large)
+*.h5
+*.pkl
+*.model
+*.bin
+*.onnx
+*.pt
+*.pth
+*.weights
+*.tfrecord
+*.pb
+*.tflite
+
+# Logs
+logs/
+*.log
